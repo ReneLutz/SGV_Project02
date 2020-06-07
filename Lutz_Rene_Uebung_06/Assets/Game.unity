@@ -491,6 +491,46 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 605b09f1b490925458d250fd106cd72c, type: 3}
+--- !u!1 &1941930984 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 988783089916038574, guid: 605b09f1b490925458d250fd106cd72c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1752447998}
+  m_PrefabAsset: {fileID: 0}
+--- !u!195 &1941930985
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941930984}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &1941930986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941930984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e8b1005c65592d40af1e7bfc4807768, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1961150018
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -498,10 +538,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1914881013806084811, guid: 52783804c85bb25469a0cf44743e76e9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
     - target: {fileID: 3575086584947470983, guid: 52783804c85bb25469a0cf44743e76e9,
         type: 3}
       propertyPath: m_Name
       value: TerrainPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 3575086584947470983, guid: 52783804c85bb25469a0cf44743e76e9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Terrain
       objectReference: {fileID: 0}
     - target: {fileID: 4464710595336216766, guid: 52783804c85bb25469a0cf44743e76e9,
         type: 3}
@@ -512,6 +562,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4555435767900113999, guid: 52783804c85bb25469a0cf44743e76e9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Terrain
       objectReference: {fileID: 0}
     - target: {fileID: 7756619212555239006, guid: 52783804c85bb25469a0cf44743e76e9,
         type: 3}
@@ -573,10 +628,20 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 8559785664856723977, guid: 52783804c85bb25469a0cf44743e76e9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
     - target: {fileID: 8686530823868501208, guid: 52783804c85bb25469a0cf44743e76e9,
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686530823868501208, guid: 52783804c85bb25469a0cf44743e76e9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Terrain
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52783804c85bb25469a0cf44743e76e9, type: 3}
@@ -610,6 +675,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _target: {fileID: 2065678870}
+  _player: {fileID: 1941930986}
   _minZoomDistance: 15
   _maxZoomDistance: 40
   _horizontalRotationSpeed: 90

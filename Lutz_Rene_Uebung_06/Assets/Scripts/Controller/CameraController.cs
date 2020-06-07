@@ -4,6 +4,8 @@ public class CameraController : MonoBehaviour
 {
     [SerializeField] private Transform _target;
 
+    [SerializeField] private PlayerController _player;
+
     [SerializeField] private float _minZoomDistance;
     [SerializeField] private float _maxZoomDistance;
 
@@ -31,6 +33,8 @@ public class CameraController : MonoBehaviour
         Zoom();
         Rotate();
         Move();
+
+        FindNextPlayerPosition();
     }
 
     private void Zoom()
@@ -86,5 +90,22 @@ public class CameraController : MonoBehaviour
     private void Move()
     {
         _camera.transform.position = _target.position + _cameraOffset;
+    }
+
+    private void FindNextPlayerPosition()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            RaycastHit hit;
+
+            if (Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out hit))
+            {
+                if (hit.collider.tag == "Terrain")
+                {
+                    _player.Move(hit.point);
+                }
+            }
+        }
+
     }
 }
