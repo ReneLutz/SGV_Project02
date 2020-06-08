@@ -489,6 +489,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 988783089923309166, guid: 605b09f1b490925458d250fd106cd72c,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d92ad5988d32fd24f8461472647aef16, type: 2}
+    - target: {fileID: 988783089923309166, guid: 605b09f1b490925458d250fd106cd72c,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 605b09f1b490925458d250fd106cd72c, type: 3}
 --- !u!1 &1941930984 stripped
@@ -680,6 +690,8 @@ MonoBehaviour:
   _maxZoomDistance: 40
   _horizontalRotationSpeed: 90
   _verticalRotationSpeed: 60
+  _cameraThresholdX: 0.2
+  _cameraThresholdY: 0.2
   _headOffset: {x: 0, y: 4, z: 0}
 --- !u!4 &1994424535
 Transform:

@@ -12,6 +12,9 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float _horizontalRotationSpeed;    // Speed for rotating camera left / right
     [SerializeField] private float _verticalRotationSpeed;      // Speed for rotating camera up / down
 
+    [SerializeField] private float _cameraThresholdX;
+    [SerializeField] private float _cameraThresholdY;
+
     [SerializeField] private Vector3 _headOffset;
 
     private Vector3 _cameraOffset;
@@ -71,14 +74,14 @@ public class CameraController : MonoBehaviour
             float mouseY = Input.GetAxis("Mouse Y");
 
             // This changes the camera's position and rotates around world axis
-            if (mouseX < -0.2 || mouseX > 0.2)
+            if (mouseX < -_cameraThresholdX || mouseX > _cameraThresholdX)
             {
                 Vector3 rotateH = new Vector3(0, mouseX, 0) * _horizontalRotationSpeed * Time.deltaTime;
                 _cameraOffset = Quaternion.Euler(rotateH) * _cameraOffset;
                 _camera.transform.Rotate(rotateH, Space.World);
             }
 
-            if (mouseY < -0.2 || mouseY > 0.2)
+            if (mouseY < -_cameraThresholdY || mouseY > _cameraThresholdY)
             {
                 // This changes the camera's rotation relative to itself
                 Vector3 rotateV = new Vector3(-mouseY, 0, 0);
