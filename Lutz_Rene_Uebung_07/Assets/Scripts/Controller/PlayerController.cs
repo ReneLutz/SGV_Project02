@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Runtime.CompilerServices;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class PlayerController : MonoBehaviour
 {
-    private readonly string MOVE = "Move";
+    private readonly string SPEED = "Speed";
     private readonly string ATTACK = "Attack";
 
     private NavMeshAgent _agent;
@@ -23,6 +21,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        _animator.SetFloat(SPEED, _agent.velocity.magnitude / _agent.speed);
+
         Attack();
     }
 
@@ -38,11 +38,10 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             // If the character was moving, stop it
-            if (_animator.GetBool(MOVE))
+            if (!_agent.isStopped)
             {
                 _enableMove = true;
                 _agent.isStopped = true;
-                _animator.SetBool(MOVE, false);
             }
 
             // Trigger attack only if not triggered since last attack animation
@@ -62,30 +61,12 @@ public class PlayerController : MonoBehaviour
             {
                 _enableMove = false;
                 _agent.isStopped = false;
-                _animator.SetBool(MOVE, true);
             }
         }
-    }
-
-    private IEnumerator WaitOnPathEnding()
-    {
-        WaitForEndOfFrame wait = new WaitForEndOfFrame();
-
-        // Wait during computation and character moving
-        while(_agent.remainingDistance > _agent.stoppingDistance || _agent.pathPending)
-        {
-            yield return wait;
-        }
-
-        _animator.SetBool(MOVE, false);
     }
 
     public void Move(Vector3 position)
     {
         _agent.destination = position;
-
-        _animator.SetBool(MOVE, true);
-
-        StartCoroutine(WaitOnPathEnding());
     }
 }
