@@ -3,15 +3,19 @@ using UnityEngine.AI;
 
 public class PlayerController : MonoBehaviour
 {
-    private readonly string SPEED = "Speed";
-    private readonly string ATTACK = "Attack";
+    [SerializeField] private Transform _projectileSpawn;
+
+    [SerializeField] private ProjectilePool _projectilePool;
+
+    [SerializeField] private float _projectileFrequency;
 
     private NavMeshAgent _agent;
 
     private Animator _animator;
 
-    private bool _enableMove = false;
-    private bool _attackTriggered = false;
+    private float _projectileCooldown = 0;
+
+    private Transform _target;
 
     private void Awake()
     {
@@ -21,52 +25,45 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        _animator.SetFloat(SPEED, _agent.velocity.magnitude / _agent.speed);
+        _animator.SetFloat(Constants.ANIMATION_PARAM_SPEED, _agent.velocity.magnitude / _agent.speed);
 
-        Attack();
+        _projectileCooldown += Time.deltaTime;
+
+        if(_projectileCooldown > _projectileFrequency)
+        {
+            _projectileCooldown = 0;
+            Shoot();
+        }
+
     }
 
-    private void Attack()
+    private void Shoot()
     {
-        // Abort if already attacking, but allow to trigger next attack first
-        if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
-        {
-            _attackTriggered = false;
-            return;
-        }
+        // If attack animation is set, spawn a projectile
+        if (!_animator.GetBool(Constants.ANIMATION_PARAM_ATTACK)) return;
 
-        if (Input.GetKey(KeyCode.Space))
-        {
-            // If the character was moving, stop it
-            if (!_agent.isStopped)
-            {
-                _enableMove = true;
-                _agent.isStopped = true;
-            }
+        Projectile projectile = _projectilePool.GetProjectile();
+        projectile.Init(_projectileSpawn.position, _target);
+    }
 
-            // Trigger attack only if not triggered since last attack animation
-            if (!_attackTriggered)
-            {
-                _attackTriggered = true;
-                _animator.SetTrigger(ATTACK);
-            }
-        }
-        else
-        {
-            // Here neither attack animation is playing nor attack button is pressed.
-            // Allow attacking and set player moving if player moved before
-            _attackTriggered = false;
+    public void Attack(Transform target)
+    {
+        _target = target;
 
-            if (_enableMove)
-            {
-                _enableMove = false;
-                _agent.isStopped = false;
-            }
-        }
+        _agent.isStopped = true;
+        _animator.SetBool(Constants.ANIMATION_PARAM_ATTACK, true);
+    }
+
+    public void StopAttack()
+    {
+        _animator.SetBool(Constants.ANIMATION_PARAM_ATTACK, false);
     }
 
     public void Move(Vector3 position)
     {
+        _agent.isStopped = false;
         _agent.destination = position;
+
+        _animator.SetBool(Constants.ANIMATION_PARAM_ATTACK, false);
     }
 }

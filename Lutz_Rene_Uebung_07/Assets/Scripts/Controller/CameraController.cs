@@ -103,12 +103,16 @@ public class CameraController : MonoBehaviour
 
             if (Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out hit))
             {
-                if (hit.collider.tag == "Terrain")
+                if (hit.collider.tag == Constants.TAG_TERRAIN)
                 {
                     _player.Move(hit.point);
                 }
+
+                if (hit.collider.tag == Constants.TAG_ENEMY)
+                {
+                    _player.Attack(hit.collider.transform);
+                }
             }
         }
-
     }
 }
