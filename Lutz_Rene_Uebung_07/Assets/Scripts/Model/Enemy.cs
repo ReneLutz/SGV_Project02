@@ -5,25 +5,19 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    // Original Destination
-    // x -4.31, y 10.76, z -76.53
-
     [SerializeField] private int _life;
 
     [SerializeField] private Transform _target;
 
-    [SerializeField] private ParticleSystem _explosion;
-
     [SerializeField] private PlayerController _player;
 
+    [SerializeField] private ParticleSystem _explosion;
     [SerializeField] private SkinnedMeshRenderer _renderer;
 
     private NavMeshAgent _agent;
     private Animator _animator;
-
     private Rigidbody _body;
     private Transform _transform;
-
 
     public virtual void Init(Vector3 position, int life)
     {
@@ -44,7 +38,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        // _agent.destination = _target.position;
+        _agent.destination = _target.position;
     }
 
     private void Update() 

@@ -3,15 +3,14 @@
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private Vector3 _bodyOffset;
-    [SerializeField] private float _projectileSpeed;
 
-    [SerializeField] private float _lifetime;
+    [SerializeField] private float _projectileSpeed;
+    [SerializeField] private float _projectileLifetime;
     private float _projectileTTL;
 
     public int Damage;
 
     private Transform _target;
-
     private Transform _transform;
 
     public virtual void Init(Vector3 position, Transform target)
@@ -19,7 +18,7 @@ public class Projectile : MonoBehaviour
         _transform.position = position;
         _target = target;
 
-        _projectileTTL = _lifetime;
+        _projectileTTL = _projectileLifetime;
     }
 
     private void Awake()
@@ -27,7 +26,6 @@ public class Projectile : MonoBehaviour
         _transform = transform;
     }
 
-    // Update is called once per frame
     private void Update()
     {
         Vector3 direction = (_target.position + _bodyOffset)- _transform.position;

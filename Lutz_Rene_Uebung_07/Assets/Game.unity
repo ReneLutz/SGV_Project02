@@ -5093,7 +5093,7 @@ PrefabInstance:
     - target: {fileID: 988783089916072334, guid: 1e00cc717b9ec0744b5cb840937bab7c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -20
+      value: -4.31
       objectReference: {fileID: 0}
     - target: {fileID: 988783089916072334, guid: 1e00cc717b9ec0744b5cb840937bab7c,
         type: 3}
@@ -5103,7 +5103,7 @@ PrefabInstance:
     - target: {fileID: 988783089916072334, guid: 1e00cc717b9ec0744b5cb840937bab7c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 52
+      value: -76.53
       objectReference: {fileID: 0}
     - target: {fileID: 988783089916072334, guid: 1e00cc717b9ec0744b5cb840937bab7c,
         type: 3}
@@ -5418,8 +5418,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _life: 5
   _target: {fileID: 1771767530}
-  _explosion: {fileID: 18821454}
   _player: {fileID: 1941930986}
+  _explosion: {fileID: 18821454}
   _renderer: {fileID: 1097831577}
 --- !u!136 &1619765400
 CapsuleCollider:

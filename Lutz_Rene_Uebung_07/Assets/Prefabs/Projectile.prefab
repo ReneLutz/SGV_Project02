@@ -108,5 +108,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bodyOffset: {x: 0, y: 2, z: 0}
   _projectileSpeed: 2
-  _lifetime: 5
+  _projectileLifetime: 5
   Damage: 2
