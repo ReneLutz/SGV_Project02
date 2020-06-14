@@ -8,10 +8,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private ProjectilePool _projectilePool;
 
     [SerializeField] private float _projectileFrequency;
-    
+    [SerializeField] private float _range;
+
     public float Health;
 
-    private float _projectileCooldown = 0;
+    private float _projectileCooldown;
 
     private NavMeshAgent _agent;
     private Animator _animator;
@@ -23,6 +24,9 @@ public class PlayerController : MonoBehaviour
         _animator = GetComponent<Animator>();
 
         _healthbar.Init(Health);
+        
+        // If not set on frequency here, the player would have to wait the cooldown to attack the first time
+        _projectileCooldown = _projectileFrequency;
     }
 
     private void Update()
@@ -31,21 +35,20 @@ public class PlayerController : MonoBehaviour
 
         _projectileCooldown += Time.deltaTime;
 
-        if(_projectileCooldown > _projectileFrequency)
+        if (_animator.GetBool(Constants.ANIMATION_PARAM_ATTACK))
         {
-            _projectileCooldown = 0;
             Shoot();
         }
-
     }
 
     private void Shoot()
     {
-        // If attack animation is set, spawn a projectile
-        if (!_animator.GetBool(Constants.ANIMATION_PARAM_ATTACK)) return;
-
+        // Check if attack is on cooldown. If yes, abort.
+        if (_projectileCooldown < _projectileFrequency) return;
+        
         Projectile projectile = _projectilePool.GetProjectile();
-        projectile.Init(_projectileSpawn.position, _target);
+        projectile.Init(_projectileSpawn.position, _target); 
+        _projectileCooldown = 0;
     }
 
     public void Attack(Transform target)

@@ -5290,8 +5290,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -50}
-  m_SizeDelta: {x: 0, y: 100}
+  m_AnchoredPosition: {x: 0, y: -40}
+  m_SizeDelta: {x: 0, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &680907556
 CanvasRenderer:
@@ -6123,7 +6123,8 @@ MonoBehaviour:
   _projectileSpawn: {fileID: 131252413}
   _healthbar: {fileID: 2139189813}
   _projectilePool: {fileID: 471641933}
-  _projectileFrequency: 2
+  _projectileFrequency: 1
+  _range: 10
   Health: 10
 --- !u!1001 &1961150018
 PrefabInstance:
@@ -6463,32 +6464,32 @@ PrefabInstance:
     - target: {fileID: 8436834598418763708, guid: 77a3b9d4a2e97024eb2e791a4bc70700,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1920
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8436834598418763708, guid: 77a3b9d4a2e97024eb2e791a4bc70700,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8436834598418763708, guid: 77a3b9d4a2e97024eb2e791a4bc70700,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8436834598418763708, guid: 77a3b9d4a2e97024eb2e791a4bc70700,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8436834598418763708, guid: 77a3b9d4a2e97024eb2e791a4bc70700,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8436834598418763708, guid: 77a3b9d4a2e97024eb2e791a4bc70700,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8436834598418763708, guid: 77a3b9d4a2e97024eb2e791a4bc70700,
         type: 3}
