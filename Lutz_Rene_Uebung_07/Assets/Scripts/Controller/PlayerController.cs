@@ -4,23 +4,25 @@ using UnityEngine.AI;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Transform _projectileSpawn;
-
+    [SerializeField] private Healthbar _healthbar;
     [SerializeField] private ProjectilePool _projectilePool;
 
     [SerializeField] private float _projectileFrequency;
-
-    private NavMeshAgent _agent;
-
-    private Animator _animator;
+    
+    public float Health;
 
     private float _projectileCooldown = 0;
 
+    private NavMeshAgent _agent;
+    private Animator _animator;
     private Transform _target;
 
     private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
+
+        _healthbar.Init(Health);
     }
 
     private void Update()
@@ -65,5 +67,11 @@ public class PlayerController : MonoBehaviour
         _agent.destination = position;
 
         _animator.SetBool(Constants.ANIMATION_PARAM_ATTACK, false);
+    }
+
+    public void LoseHealth(float amount)
+    {
+        Health -= amount;
+        _healthbar.SetHealth(Health);   
     }
 }
