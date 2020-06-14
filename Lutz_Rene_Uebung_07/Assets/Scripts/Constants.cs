@@ -1,5 +1,6 @@
 ﻿public static class Constants
 {
+    public static readonly string TAG_BASE = "Base";
     public static readonly string TAG_ENEMY = "Enemy";
     public static readonly string TAG_PROJECTILE = "Projectile";
     public static readonly string TAG_TERRAIN = "Terrain";
