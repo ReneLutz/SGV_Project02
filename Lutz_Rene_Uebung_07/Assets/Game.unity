@@ -6153,6 +6153,11 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 4464710595336216766, guid: 52783804c85bb25469a0cf44743e76e9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
     - target: {fileID: 4555435767900113999, guid: 52783804c85bb25469a0cf44743e76e9,
         type: 3}
       propertyPath: m_StaticEditorFlags
