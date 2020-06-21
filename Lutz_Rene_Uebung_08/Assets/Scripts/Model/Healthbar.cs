@@ -3,16 +3,12 @@ using UnityEngine.UI;
 
 public class Healthbar : MonoBehaviour
 {
-    [SerializeField] Damagable _damagable;
-    private Image _image;
-
-    private void Awake()
-    {
-        _image = GetComponent<Image>();
-    }
+    [SerializeField] private Damagable _damagable;
+    [SerializeField] private Image _image;
 
     void Update()
     {
         _image.fillAmount = _damagable.HealthRatio;
+        transform.LookAt(Camera.main.transform);
     }
 }

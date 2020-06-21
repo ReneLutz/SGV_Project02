@@ -16,6 +16,9 @@ public class HealthUI : MonoBehaviour
 
     private void Display(int maxLive, int currentLive)
     {
+        float ratio = (float)currentLive / (float)maxLive;
 
+        _healthText.text = currentLive.ToString();
+        _image.fillAmount = ratio;
     }
 }

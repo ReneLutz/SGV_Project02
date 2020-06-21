@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class EnemyDamagable : Damagable
+public class DamagableEnemy : Damagable
 {
     public override void Die()
     {

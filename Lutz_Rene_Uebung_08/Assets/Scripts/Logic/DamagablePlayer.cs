@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerDamagable : Damagable
+public class DamagablePlayer : Damagable
 {
     public override void Die()
     {

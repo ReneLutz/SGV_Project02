@@ -4,17 +4,17 @@ public class Nexus : MonoBehaviour
 {
     [SerializeField] int _playerLife = 10;
     public int PlayerLife => this._playerLife;
-    private int _maxLive;
+    private int _maxLife;
 
     public delegate void OnLifeLoss(int maxlife, int currentLife);
     public OnLifeLoss _onLifeLoss;
 
-    void Start()
+    private void Start()
     {
-        this._maxLive = this._playerLife;
+        this._maxLife = this._playerLife;
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         Enemy enemy = other.gameObject.GetComponent<Enemy>();
         if (enemy)
@@ -24,7 +24,7 @@ public class Nexus : MonoBehaviour
             this._playerLife--;
 
             if (this._onLifeLoss != null)
-                this._onLifeLoss.Invoke(this._maxLive, this._playerLife);
+                this._onLifeLoss.Invoke(this._maxLife, this._playerLife);
         }
     }
 }
