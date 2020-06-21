@@ -4,7 +4,7 @@ public class CameraController : MonoBehaviour
 {
     [SerializeField] private Transform _target;
 
-    [SerializeField] private PlayerController _player;
+    [SerializeField] private Controller _player;
 
     [SerializeField] private float _minZoomDistance;
     [SerializeField] private float _maxZoomDistance;
@@ -110,7 +110,9 @@ public class CameraController : MonoBehaviour
 
                 if (hit.collider.tag == Constants.TAG_ENEMY)
                 {
-                    _player.Attack(hit.collider.transform);
+                    Damagable damagable = hit.transform.GetComponent<Damagable>();
+
+                    if (damagable != null) _player.Attack(damagable);
                 }
             }
         }

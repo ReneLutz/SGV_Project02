@@ -1,50 +1,55 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private Vector3 _bodyOffset;
 
     [SerializeField] private float _projectileSpeed;
-    [SerializeField] private float _projectileLifetime;
-    private float _projectileTTL;
 
-    public int Damage;
+    [SerializeField] private int _damage = 1;
 
-    private Transform _target;
+    private Rigidbody _body;
+    private Damagable _target;
     private Transform _transform;
 
-    public virtual void Init(Vector3 position, Transform target)
+    public Projectile Init(Vector3 position, Damagable target)
     {
-        _transform.position = position;
         _target = target;
+        _transform.position = position;
 
-        _projectileTTL = _projectileLifetime;
+        return this;
     }
 
     private void Awake()
     {
         _transform = transform;
+        _body = GetComponent<Rigidbody>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        Vector3 direction = (_target.position + _bodyOffset)- _transform.position;
-
-        _transform.Translate(direction.normalized * _projectileSpeed * Time.deltaTime);
-
-        _projectileTTL -= Time.deltaTime;
-
-        if (_projectileTTL <= 0)
+        if(_target == null)
         {
             gameObject.SetActive(false);
+            return;
         }
+
+        Vector3 direction = (_target.transform.position - _body.position).normalized;
+        _body.MovePosition(_body.position + direction * Time.fixedDeltaTime * _projectileSpeed);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == Constants. TAG_ENEMY)
+        if(other.tag == Constants.TAG_ENEMY)
         {
-            gameObject.SetActive(false);
+            Damagable enemy = other.GetComponent<Damagable>();
+
+            if (enemy != null)
+            {
+                enemy.Hit(_damage);
+                gameObject.SetActive(false);
+            }
         }
     }
 }

@@ -3,31 +3,16 @@ using UnityEngine.UI;
 
 public class Healthbar : MonoBehaviour
 {
-    [SerializeField] private Image _healthbar;
+    [SerializeField] Damagable _damagable;
+    private Image _image;
 
-    private float _currentHealth = 1;
-    private float _maxHealth = 5;
-
-    public virtual void Init(float maxHealth)
+    private void Awake()
     {
-        _maxHealth = maxHealth;
-        _currentHealth = maxHealth;
-
-        gameObject.SetActive(true);
+        _image = GetComponent<Image>();
     }
 
     void Update()
     {
-        _healthbar.fillAmount = (_currentHealth / _maxHealth);
-    }
-
-    public void SetHealth(float amount)
-    {
-        _currentHealth = amount;
-    }
-
-    public void Dispose()
-    {
-        gameObject.SetActive(false);
+        _image.fillAmount = _damagable.HealthRatio;
     }
 }

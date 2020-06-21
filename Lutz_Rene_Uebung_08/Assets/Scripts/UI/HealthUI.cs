@@ -1,13 +1,21 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthUI : MonoBehaviour
 {
-    [SerializeField] private PlayerController _player;
+    [SerializeField] private Nexus _nexus;
     [SerializeField] private TextMeshProUGUI _healthText;
+    [SerializeField] private Image _image;
 
-    void Update()
+    private void Start()
     {
-        _healthText.text = string.Format("{0}", _player.Health);
+        _nexus._onLifeLoss += Display;
+        Display(_nexus.PlayerLife, _nexus.PlayerLife);
+    }
+
+    private void Display(int maxLive, int currentLive)
+    {
+
     }
 }

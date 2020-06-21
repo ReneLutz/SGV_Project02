@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1538288708529480020}
   - component: {fileID: 6349451345087874058}
   m_Layer: 5
-  m_Name: Health_Background
+  m_Name: Health_BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,9 +85,8 @@ GameObject:
   - component: {fileID: 562448917785747069}
   - component: {fileID: 6080731398553614818}
   - component: {fileID: 2278954205183181497}
-  - component: {fileID: 6669832742971644058}
   m_Layer: 5
-  m_Name: Health_Canvas
+  m_Name: Healthbar_Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -174,19 +173,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &6669832742971644058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4618048577457340372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75b7f045071ff9b4499e59b0335cba2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _healthbar: {fileID: 3844212800145495558}
 --- !u!1 &6618373763785395121
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,8 +184,9 @@ GameObject:
   - component: {fileID: 7771189154752164025}
   - component: {fileID: 5290493550446181701}
   - component: {fileID: 3844212800145495558}
+  - component: {fileID: 6176581830998429433}
   m_Layer: 5
-  m_Name: Health
+  m_Name: Health_FG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -260,3 +247,16 @@ MonoBehaviour:
   m_FillOrigin: 1
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6176581830998429433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6618373763785395121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75b7f045071ff9b4499e59b0335cba2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damagable: {fileID: 0}

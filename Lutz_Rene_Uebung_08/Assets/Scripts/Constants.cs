@@ -7,4 +7,5 @@
 
     public static readonly string ANIMATION_PARAM_ATTACK = "Attack";
     public static readonly string ANIMATION_PARAM_SPEED = "Speed";
+    public static readonly string ANIMATION_PARAM_INRANGE = "InRange";
 }
