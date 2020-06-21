@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
     private Rigidbody _body;
     private Transform _transform;
     private Camera _camera;
+    
     public virtual void Init(Vector3 position, float life, float damage)
     {
         _transform.position = position;
