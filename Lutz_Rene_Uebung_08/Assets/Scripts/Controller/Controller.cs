@@ -13,6 +13,12 @@ public class Controller : MonoBehaviour
     private Damagable _target;
     private Transform _transform;
 
+    public Controller Init(ProjectilePool pool)
+    {
+        _projectilePool = pool;
+        return this;
+    }
+
     private void Awake()
     {
         _transform = transform;
@@ -33,7 +39,7 @@ public class Controller : MonoBehaviour
         {
             if (_target)
             {
-                _agent.destination = _target.transform.position;
+                if (_agent.enabled) _agent.destination = _target.transform.position;
             }
             else
             {
@@ -44,7 +50,7 @@ public class Controller : MonoBehaviour
 
     private void Shoot()
     {
-        if(!_target)
+        if(!_target || !_target.Attackable)
         {
             _animator.SetBool(Constants.ANIMATION_PARAM_ATTACK, false);
             return;
@@ -62,6 +68,8 @@ public class Controller : MonoBehaviour
 
     public void Move(Vector3 destination)
     {
+        if (!_agent.enabled) return;
+
         _target = null;
         _agent.destination = destination;
 
@@ -71,11 +79,15 @@ public class Controller : MonoBehaviour
     //Invoked from Animator
     public void StopAgent()
     {
+        if (!_agent.enabled) return;
+
         _agent.isStopped = true;
     }
 
     public void StartAgent()
     {
+        if (!_agent.enabled) return;
+
         _agent.isStopped = false;
     }
 }

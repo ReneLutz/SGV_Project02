@@ -5,7 +5,10 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private List<Enemy> _waves;
 
-    [SerializeField] private GameObject _nexus;
+    [SerializeField] private Nexus _nexus;
+    [SerializeField] private Damagable _player;
+
+    [SerializeField] private ProjectilePool _projectilePool;
 
     [SerializeField] private int _waveSize;     // Number of enemies per wave
     [SerializeField] private int _waveDelay;    // Time between two waves
@@ -56,7 +59,7 @@ public class EnemySpawner : MonoBehaviour
         _enemyTimer = _enemyDelay;
 
         // Spawn new enemy and instantiate nexus as target
-        Instantiate(_waves[_currentWaveIndex], transform).Init(_nexus);
+        Instantiate(_waves[_currentWaveIndex], transform).Init(_nexus, _player, _projectilePool);
         _currentEnemyCount++;
 
         // Check if spawn more enemies

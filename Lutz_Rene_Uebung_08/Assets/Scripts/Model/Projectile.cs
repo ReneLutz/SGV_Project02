@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
@@ -29,7 +28,7 @@ public class Projectile : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(_target == null)
+        if(_target == null || !_target.Attackable)
         {
             gameObject.SetActive(false);
             return;
@@ -41,15 +40,15 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == Constants.TAG_ENEMY)
-        {
-            Damagable enemy = other.GetComponent<Damagable>();
+        // If collider is not the target, abort
+        if (other.gameObject != _target.gameObject) return;
 
-            if (enemy != null)
-            {
-                enemy.Hit(_damage);
-                gameObject.SetActive(false);
-            }
+        Damagable enemy = other.GetComponent<Damagable>();
+
+        if (enemy != null)
+        {
+            enemy.Hit(_damage);
+            gameObject.SetActive(false);
         }
     }
 }

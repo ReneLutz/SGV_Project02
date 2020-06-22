@@ -57,8 +57,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c78538cc0b98ee44afec47665c5e835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _attentionRange: 20
   _controller: {fileID: 5955936397495479694}
-  _target: {fileID: 0}
 --- !u!114 &5955936397495479694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e8b1005c65592d40af1e7bfc4807768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectileSpawn: {fileID: 0}
+  _projectileSpawn: {fileID: 2548163055414250891}
   _projectilePool: {fileID: 0}
   _range: 10
 --- !u!195 &7955106367448220296
@@ -204,6 +204,12 @@ GameObject:
 --- !u!4 &2548163055414250969 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 988783089916072334, guid: 1e00cc717b9ec0744b5cb840937bab7c,
+    type: 3}
+  m_PrefabInstance: {fileID: 3378887429609086039}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2548163055414250891 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 988783089916072412, guid: 1e00cc717b9ec0744b5cb840937bab7c,
     type: 3}
   m_PrefabInstance: {fileID: 3378887429609086039}
   m_PrefabAsset: {fileID: 0}

@@ -4,13 +4,17 @@ public abstract class Damagable : MonoBehaviour
 {
     [SerializeField] protected Explosion _explosion;
 
-    [SerializeField] private int _maxHealth = 5;
-    private int _currentHealth;
+    [SerializeField] protected int _maxHealth = 5;
+
+    public bool Attackable;
+
+    protected int _currentHealth;
     
     public float HealthRatio => (float)this._currentHealth / (float)this._maxHealth;
 
     void Start()
     {
+        Attackable = true;
         this._currentHealth = this._maxHealth;
     }
 

@@ -13,12 +13,14 @@ public class DamagablePlayer : Damagable
     private bool _respawn = false;
 
     private NavMeshAgent _agent;
+    private Animator _animator;
     private Rigidbody _body;
 
 
     private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
+        _animator = GetComponent<Animator>();
         _body = GetComponent<Rigidbody>();
     }
 
@@ -29,25 +31,32 @@ public class DamagablePlayer : Damagable
             _respawnTimer -= Time.deltaTime;
             if (_respawnTimer > 0) return;
 
+            Respawn();
             SetActive(true);
-            transform.position = _nexusTransform.position;
         }
     }
 
     private void SetActive(bool active)
     {
         _respawn = !active;
-        
-        _agent.isStopped = !active;
+        Attackable = active;
+
+        _agent.enabled = active;
+        _animator.enabled = active;
         _body.detectCollisions = active;
         _renderer.enabled = active;
+    }
+
+    private void Respawn()
+    {
+        transform.position = _nexusTransform.position;
+        _currentHealth = _maxHealth;
     }
 
     public override void Die()
     {
         Instantiate(this._explosion.gameObject, transform.position, Quaternion.identity);
 
-        // Respawn player
         _respawnTimer = _respawnDelay;
         SetActive(false);
     }

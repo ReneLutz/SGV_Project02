@@ -187,7 +187,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damagable: {fileID: 0}
-  _image: {fileID: 3844212800145495558}
+  _imageFG: {fileID: 3844212800145495558}
+  _imageBG: {fileID: 6349451345087874058}
 --- !u!1 &6618373763785395121
 GameObject:
   m_ObjectHideFlags: 0

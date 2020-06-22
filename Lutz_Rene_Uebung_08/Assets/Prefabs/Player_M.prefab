@@ -52,6 +52,23 @@ MonoBehaviour:
   _explosion: {fileID: 6423366484913339933, guid: 4354b11e052f2724e82feb0f9f00d900,
     type: 3}
   _maxHealth: 5
+  _respawnDelay: 5
+  _nexusTransform: {fileID: 0}
+  _renderer: {fileID: 0}
+--- !u!136 &4044842562191864363
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1158325128417709667}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 3.6
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.8, z: 0}
 --- !u!1001 &2138064589162857421
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -161,6 +178,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Healthbar_Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8049608024268928731, guid: 77a3b9d4a2e97024eb2e791a4bc70700,
+        type: 3}
+      propertyPath: _damagable
+      value: 
+      objectReference: {fileID: 7758849532317650698}
     - target: {fileID: 8436834598418763708, guid: 77a3b9d4a2e97024eb2e791a4bc70700,
         type: 3}
       propertyPath: m_LocalPosition.x
