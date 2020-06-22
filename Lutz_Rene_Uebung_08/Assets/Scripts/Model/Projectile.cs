@@ -4,18 +4,21 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] private Vector3 _bodyOffset;
 
-    [SerializeField] private float _projectileSpeed;
+    private float _projectileSpeed;
 
-    [SerializeField] private int _damage = 1;
+    private int _damage;
 
     private Rigidbody _body;
     private Damagable _target;
     private Transform _transform;
 
-    public Projectile Init(Vector3 position, Damagable target)
+    public Projectile Init(Vector3 position, Damagable target, int damage, int projectileSpeed)
     {
         _target = target;
         _transform.position = position;
+
+        _damage = damage;
+        _projectileSpeed = projectileSpeed;
 
         return this;
     }

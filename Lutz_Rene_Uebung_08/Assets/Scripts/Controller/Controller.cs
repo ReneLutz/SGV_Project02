@@ -1,12 +1,17 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.AI;
 
 public class Controller : MonoBehaviour
 {
+    public List<Skill> Skills;
+
     [SerializeField] private Transform _projectileSpawn;
     [SerializeField] private ProjectilePool _projectilePool;
 
-    [SerializeField] private float _range;
+    private float _range;
+
+    private Skill _currentSkill;
 
     private NavMeshAgent _agent;
     private Animator _animator;
@@ -16,6 +21,7 @@ public class Controller : MonoBehaviour
     public Controller Init(ProjectilePool pool)
     {
         _projectilePool = pool;
+        _projectilePool._objectPrefab = _currentSkill.ProjectilePrefab;
         return this;
     }
 
@@ -24,6 +30,8 @@ public class Controller : MonoBehaviour
         _transform = transform;
         _agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
+
+        SetSkill(0);
     }
 
     private void Update()
@@ -57,7 +65,7 @@ public class Controller : MonoBehaviour
         }
 
         Projectile projectile = _projectilePool.GetProjectile();
-        projectile.Init(_projectileSpawn.position, _target); 
+        projectile.Init(_projectileSpawn.position, _target, _currentSkill.Damage, _currentSkill.ProjectileSpeed); 
     }
 
     public void Attack(Damagable target)
@@ -74,6 +82,13 @@ public class Controller : MonoBehaviour
         _agent.destination = destination;
 
         _animator.SetBool(Constants.ANIMATION_PARAM_ATTACK, false);
+    }
+
+    public void SetSkill(int index)
+    {
+        if (index >= Skills.Count) return;
+        _currentSkill = Skills[index];
+        _range = _currentSkill.Range;
     }
 
     //Invoked from Animator

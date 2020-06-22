@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: ShortRange
   m_EditorClassIdentifier: 
   Damage: 5
-  Range: 5
+  Range: 10
   ProjectileSpeed: 10
   ProjectilePrefab: {fileID: -3203876736149594908, guid: 43f345bb693b5724d80e4c65fa1d9526,
     type: 3}
+  Icon: {fileID: 21300000, guid: ae5c4b6685d5bde4683f49affdcf6531, type: 3}

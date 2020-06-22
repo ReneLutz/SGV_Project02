@@ -4,7 +4,7 @@ using UnityEngine;
 public abstract class ObjectPool<T> : MonoBehaviour where T : MonoBehaviour
 {
 
-    [SerializeField] protected T _objectPrefab;
+    public T _objectPrefab;
 
     private List<T> _objects = new List<T>();
 

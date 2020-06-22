@@ -102,16 +102,15 @@ public class CameraController : MonoBehaviour
 
             if (Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out hit))
             {
-                if (hit.collider.tag == Constants.TAG_TERRAIN)
+                Damagable damagable = hit.transform.GetComponent<Damagable>();
+
+                if (damagable != null)
+                {
+                    _player.Attack(damagable);
+                }
+                else
                 {
                     _player.Move(hit.point);
-                }
-
-                if (hit.collider.tag == Constants.TAG_ENEMY)
-                {
-                    Damagable damagable = hit.transform.GetComponent<Damagable>();
-
-                    if (damagable != null) _player.Attack(damagable);
                 }
             }
         }

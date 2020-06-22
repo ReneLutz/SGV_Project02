@@ -64,9 +64,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e8b1005c65592d40af1e7bfc4807768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Skills:
+  - {fileID: 11400000, guid: 0170ee7df73df7d4082dcf430d9e77c3, type: 2}
   _projectileSpawn: {fileID: 5010212989592619888}
   _projectilePool: {fileID: 0}
-  _range: 20
 --- !u!114 &389587450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,6 +97,7 @@ MonoBehaviour:
   _explosion: {fileID: 6423366484913339933, guid: 4354b11e052f2724e82feb0f9f00d900,
     type: 3}
   _maxHealth: 5
+  Attackable: 0
 --- !u!1001 &5205887186671226849
 PrefabInstance:
   m_ObjectHideFlags: 0
