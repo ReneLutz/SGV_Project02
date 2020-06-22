@@ -2,8 +2,6 @@
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private Transform _target;
-
     [SerializeField] private Controller _player;
 
     [SerializeField] private float _minZoomDistance;
@@ -18,12 +16,13 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Vector3 _headOffset;
 
     private Vector3 _cameraOffset;
-
+    private Transform _target;
     private Camera _camera;
-
+    
     private void Awake()
     {
         _camera = Camera.main;
+        _target = _player.transform;
 
         _cameraOffset = _camera.transform.position - _target.position;
 
