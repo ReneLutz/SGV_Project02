@@ -224,6 +224,11 @@ PrefabInstance:
       propertyPath: _damagable
       value: 
       objectReference: {fileID: 644001754459539674}
+    - target: {fileID: 8049608024268928731, guid: 77a3b9d4a2e97024eb2e791a4bc70700,
+        type: 3}
+      propertyPath: _damagable
+      value: 
+      objectReference: {fileID: 644001754459539674}
     - target: {fileID: 8436834598418763708, guid: 77a3b9d4a2e97024eb2e791a4bc70700,
         type: 3}
       propertyPath: m_LocalPosition.x
