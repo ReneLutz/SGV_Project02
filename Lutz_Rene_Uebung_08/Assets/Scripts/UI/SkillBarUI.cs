@@ -8,7 +8,7 @@ public class SkillBarUI : MonoBehaviour
 
     private List<SkillSlotUI> _slots;
 
-    private int _activeSkillIndex;
+    private int _activeSkillIndex = 0;
 
     public SkillBarUI Init(List<Skill> skills)
     {
@@ -34,7 +34,10 @@ public class SkillBarUI : MonoBehaviour
     private void Start()
     {
         Init(_player.Skills);
-        ActivateSkill(0);
+
+        // Init player with skill 0
+        _slots[_activeSkillIndex].SetActive(true);
+        _player.SetSkill(_activeSkillIndex);
     }
 
     private void Update()
