@@ -164,6 +164,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0170ee7df73df7d4082dcf430d9e77c3, type: 2}
   _projectileSpawn: {fileID: 5010212989592619888}
   _projectilePool: {fileID: 0}
+  _maxExperiencePerLevel: 0
 --- !u!114 &389587450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,6 +195,7 @@ MonoBehaviour:
     type: 3}
   _maxHealth: 5
   Attackable: 0
+  experience: 3
 --- !u!1001 &5205887186671226849
 PrefabInstance:
   m_ObjectHideFlags: 0

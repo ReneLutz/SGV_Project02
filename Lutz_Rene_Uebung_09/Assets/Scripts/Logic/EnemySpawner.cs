@@ -6,7 +6,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private List<Enemy> _waves;
 
     [SerializeField] private Nexus _nexus;
-    [SerializeField] private Damagable _player;
+    [SerializeField] private GameObject _playerObject;
 
     [SerializeField] private ProjectilePool _projectilePool;
 
@@ -15,12 +15,16 @@ public class EnemySpawner : MonoBehaviour
 
     private List<Damagable> _activeEnemies = new List<Damagable>();
 
+    private Controller _playerController;
+    private Damagable _playerDamagable;
+
     private float _nextWaveTimer;       // Time until next wave
     private int _nextWaveIndex;         // Next wave index
     private int _currentWaveIndex;      // Current wave index
 
     private float _enemyDelay;          // Time between two enemies within a single wave
     private float _enemyTimer;
+    private int _currentEnemyCount;     // Number of enemies in current wave
 
     private bool _spawnCurrentWave = false;
 
@@ -31,6 +35,9 @@ public class EnemySpawner : MonoBehaviour
         _nextWaveTimer = 5f;
         _enemyDelay = 0.5f;
         _enemyTimer = _enemyDelay;
+
+        _playerDamagable = _playerObject.GetComponent<DamagablePlayer>();
+        _playerController = _playerObject.GetComponent<Controller>();
 
         WaveTracker.CurrentWaveCount = 0;
         WaveTracker.MaxWaveCount = _waves.Count;
@@ -52,6 +59,7 @@ public class EnemySpawner : MonoBehaviour
             _currentWaveIndex = _nextWaveIndex;
             _nextWaveIndex++;
             _spawnCurrentWave = true;
+            _currentEnemyCount = 0;
 
             WaveTracker.CurrentWaveCount = _nextWaveIndex;
         }
@@ -65,18 +73,22 @@ public class EnemySpawner : MonoBehaviour
         _enemyTimer = _enemyDelay;
 
         // Spawn new enemy and instantiate nexus as target
-        Enemy enemy = Instantiate(_waves[_currentWaveIndex], transform).Init(_nexus, _player, _projectilePool);
+        Enemy enemy = Instantiate(_waves[_currentWaveIndex], transform).Init(_nexus, _playerDamagable, _projectilePool);
+        _currentEnemyCount++;
 
         // Register callback for OnEnemyDeath event
         DamagableEnemy damagable = enemy.gameObject.GetComponent<DamagableEnemy>();
         damagable._onEnemyDeath += RemoveActiveEnemy;
+
+        // Register callbock for OnExperienceGain event
+        _playerController.RegisterExperienceGain(damagable);
 
         _activeEnemies.Add(damagable);
 
         WaveTracker.CurrentEnemyCount = _activeEnemies.Count;
 
         // Check if spawn more enemies
-        _spawnCurrentWave = _activeEnemies.Count < _waveSize;
+        _spawnCurrentWave = _currentEnemyCount < _waveSize;
     }
 
     private void RemoveActiveEnemy(DamagableEnemy enemy)

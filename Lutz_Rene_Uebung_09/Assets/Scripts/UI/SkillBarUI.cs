@@ -9,6 +9,7 @@ public class SkillBarUI : MonoBehaviour
     private List<SkillSlotUI> _slots;
 
     private int _activeSkillIndex = 0;
+    private int _levelUpCount = 0;
 
     public SkillBarUI Init(List<Skill> skills)
     {
@@ -37,7 +38,9 @@ public class SkillBarUI : MonoBehaviour
 
         // Init player with skill 0
         _slots[_activeSkillIndex].SetActive(true);
-        _player.SetSkill(_activeSkillIndex);
+        _player.SetSkill(_activeSkillIndex, Constants.SKILL_DEFAULT_LEVEL);
+
+        _player._onLevelUp += OnLevelUp;
     }
 
     private void Update()
@@ -73,6 +76,29 @@ public class SkillBarUI : MonoBehaviour
 
         _activeSkillIndex = index;
 
-        _player.SetSkill(_activeSkillIndex);
+        _player.SetSkill(_activeSkillIndex, _slots[_activeSkillIndex].Level);
+    }
+
+    public void LevelUpSkill(int index, int level)
+    {
+        _levelUpCount--;
+
+        if (_levelUpCount <= 0) SetSlotPlusesActive(false);
+
+        if (_activeSkillIndex == index) _player.SetSkill(_activeSkillIndex, level);
+    }
+
+    public void OnLevelUp()
+    {
+        _levelUpCount++;
+        SetSlotPlusesActive(true);
+    }
+
+    private void SetSlotPlusesActive(bool active)
+    {
+        foreach (SkillSlotUI slot in _slots)
+        {
+            slot.SetPlusActive(active);
+        }
     }
 }

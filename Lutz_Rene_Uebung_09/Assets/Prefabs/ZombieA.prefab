@@ -142,6 +142,7 @@ MonoBehaviour:
     type: 3}
   _maxHealth: 5
   Attackable: 0
+  experience: 4
 --- !u!114 &1908960839715625401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,6 +173,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f6341142201dd704f8087d55c98d93e2, type: 2}
   _projectileSpawn: {fileID: 2548163055414250891}
   _projectilePool: {fileID: 0}
+  _maxExperiencePerLevel: 0
 --- !u!195 &7955106367448220296
 NavMeshAgent:
   m_ObjectHideFlags: 0

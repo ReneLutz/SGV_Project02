@@ -3,6 +3,10 @@ using UnityEngine.UI;
 
 public class SkillSlotUI : MonoBehaviour
 {
+    [SerializeField] private GameObject _levelUp;
+
+    public int Level;
+
     private bool _active;
     private bool _changeColor;
     private int _index;
@@ -18,6 +22,8 @@ public class SkillSlotUI : MonoBehaviour
 
         _image.sprite = sprite;
         _bar = bar;
+
+        Level = Constants.SKILL_DEFAULT_LEVEL;
 
         return this;
     }
@@ -54,5 +60,16 @@ public class SkillSlotUI : MonoBehaviour
     public void OnButtonClick()
     {
         _bar.ActivateSkill(_index);
+    }
+
+    public void OnLevelUpClick()
+    {
+        Level++;
+        _bar.LevelUpSkill(_index, Level);
+    }
+
+    public void SetPlusActive(bool active)
+    {
+        _levelUp.SetActive(active);
     }
 }

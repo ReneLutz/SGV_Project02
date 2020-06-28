@@ -9,7 +9,15 @@ public class Controller : MonoBehaviour
     [SerializeField] private Transform _projectileSpawn;
     [SerializeField] private ProjectilePool _projectilePool;
 
+    [SerializeField] private int _maxExperiencePerLevel;
+
+    public delegate void OnLevelUp();
+    public OnLevelUp _onLevelUp;
+
     private float _range;
+
+    private int _currentExperience;
+    private int _currentSkillLevel;
 
     private Skill _currentSkill;
     private AudioSource _audio;
@@ -33,7 +41,9 @@ public class Controller : MonoBehaviour
         _animator = GetComponent<Animator>();
         _audio = GetComponent<AudioSource>();
 
-        SetSkill(0);
+        _currentExperience = 0;
+
+        SetSkill(0, Constants.SKILL_DEFAULT_LEVEL);
     }
 
     private void Update()
@@ -67,9 +77,20 @@ public class Controller : MonoBehaviour
         }
 
         Projectile projectile = _projectilePool.GetProjectile();
-        projectile.Init(_projectileSpawn.position, _target, _currentSkill.Damage, _currentSkill.ProjectileSpeed);
+        projectile.Init(_projectileSpawn.position, _target, _currentSkill.Damage * _currentSkillLevel, _currentSkill.ProjectileSpeed);
 
         _audio.Play();
+    }
+
+    private void GainExperience(int experience)
+    {
+        _currentExperience += experience;
+        if (_currentExperience < _maxExperiencePerLevel) return;
+
+        _currentExperience %= _maxExperiencePerLevel;
+
+        if (_onLevelUp != null)
+            _onLevelUp.Invoke();
     }
 
     public void Attack(Damagable target)
@@ -88,12 +109,18 @@ public class Controller : MonoBehaviour
         _animator.SetBool(Constants.ANIMATION_PARAM_ATTACK, false);
     }
 
-    public void SetSkill(int index)
+    public void SetSkill(int index, int level)
     {
         if (index >= Skills.Count) return;
+        _currentSkillLevel = level;
         _currentSkill = Skills[index];
         _range = _currentSkill.Range;
         _audio.clip = _currentSkill.Soundeffect;
+    }
+
+    public void RegisterExperienceGain(DamagableEnemy enemy)
+    {
+        enemy._onExperienceGain += GainExperience;
     }
 
     //Invoked from Animator

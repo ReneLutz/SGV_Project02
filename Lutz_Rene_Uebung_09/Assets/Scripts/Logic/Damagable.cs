@@ -25,5 +25,5 @@ public abstract class Damagable : MonoBehaviour
             this.Die();
     }
 
-    public abstract void Die();
+    public abstract void Die(bool rewardExperience = true);
 }

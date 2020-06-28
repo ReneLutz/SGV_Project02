@@ -53,7 +53,7 @@ public class DamagablePlayer : Damagable
         _currentHealth = _maxHealth;
     }
 
-    public override void Die()
+    public override void Die(bool rewardExperience = true)
     {
         Instantiate(this._explosion.gameObject, transform.position, Quaternion.identity);
 

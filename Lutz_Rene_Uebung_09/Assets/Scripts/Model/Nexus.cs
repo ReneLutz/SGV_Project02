@@ -19,7 +19,7 @@ public class Nexus : MonoBehaviour
         DamagableEnemy enemy = other.gameObject.GetComponent<DamagableEnemy>();
         if (enemy)
         {
-            enemy.Die();
+            enemy.Die(false);
             this._playerLife--;
 
             if (_playerLife <= 0) 
