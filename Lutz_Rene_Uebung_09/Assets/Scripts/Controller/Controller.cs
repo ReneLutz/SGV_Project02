@@ -12,6 +12,7 @@ public class Controller : MonoBehaviour
     private float _range;
 
     private Skill _currentSkill;
+    private AudioSource _audio;
 
     private NavMeshAgent _agent;
     private Animator _animator;
@@ -30,6 +31,7 @@ public class Controller : MonoBehaviour
         _transform = transform;
         _agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
+        _audio = GetComponent<AudioSource>();
 
         SetSkill(0);
     }
@@ -65,7 +67,9 @@ public class Controller : MonoBehaviour
         }
 
         Projectile projectile = _projectilePool.GetProjectile();
-        projectile.Init(_projectileSpawn.position, _target, _currentSkill.Damage, _currentSkill.ProjectileSpeed); 
+        projectile.Init(_projectileSpawn.position, _target, _currentSkill.Damage, _currentSkill.ProjectileSpeed);
+
+        _audio.Play();
     }
 
     public void Attack(Damagable target)
@@ -89,6 +93,7 @@ public class Controller : MonoBehaviour
         if (index >= Skills.Count) return;
         _currentSkill = Skills[index];
         _range = _currentSkill.Range;
+        _audio.clip = _currentSkill.Soundeffect;
     }
 
     //Invoked from Animator

@@ -12,4 +12,6 @@ public class Skill : ScriptableObject
     public Projectile ProjectilePrefab;
 
     public Sprite Icon;
+
+    public AudioClip Soundeffect;
 }
