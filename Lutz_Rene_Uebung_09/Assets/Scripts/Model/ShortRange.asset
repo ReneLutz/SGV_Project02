@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 244b606155260944084291e95052c19d, type: 3}
   m_Name: ShortRange
   m_EditorClassIdentifier: 
-  Damage: 5
+  Damage: 2
   Range: 10
   ProjectileSpeed: 10
   ProjectilePrefab: {fileID: -3203876736149594908, guid: 43f345bb693b5724d80e4c65fa1d9526,
