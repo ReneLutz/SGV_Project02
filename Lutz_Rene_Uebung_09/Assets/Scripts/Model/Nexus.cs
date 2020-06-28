@@ -16,12 +16,14 @@ public class Nexus : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Enemy enemy = other.gameObject.GetComponent<Enemy>();
+        DamagableEnemy enemy = other.gameObject.GetComponent<DamagableEnemy>();
         if (enemy)
         {
-            // ToDo: Play death explosion and add enemy back to pool
-            Destroy(enemy.gameObject);
+            enemy.Die();
             this._playerLife--;
+
+            if (_playerLife <= 0) 
+                SceneController.SceneControl.SwitchToEndScreen();
 
             if (this._onLifeLoss != null)
                 this._onLifeLoss.Invoke(this._maxLife, this._playerLife);
