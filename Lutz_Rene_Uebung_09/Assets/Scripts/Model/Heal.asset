@@ -18,4 +18,4 @@ MonoBehaviour:
   ProjectilePrefab: {fileID: -3203876736149594908, guid: 43f345bb693b5724d80e4c65fa1d9526,
     type: 3}
   Icon: {fileID: 21300000, guid: 926859865ecc11142a1985c44d191b05, type: 3}
-  Soundeffect: {fileID: 8300000, guid: c4c005d3902f0fe44af7a61fcea1f7fe, type: 3}
+  Soundeffect: {fileID: 8300000, guid: 58e882708de4db84b8710cde290a1b72, type: 3}
