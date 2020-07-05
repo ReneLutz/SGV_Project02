@@ -9,7 +9,7 @@ public class SkillTreeUI : MonoBehaviour
 
     [SerializeField] private List<SkillTreeNodeUI> _treeNodes;
 
-    private int LevelCount = 0;
+    public int LevelCount { get; private set; } = 0;
 
     private SkillTreeNodeUI _root;
 
