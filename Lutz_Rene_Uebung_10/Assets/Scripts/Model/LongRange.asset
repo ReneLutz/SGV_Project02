@@ -17,5 +17,5 @@ MonoBehaviour:
   ProjectileSpeed: 10
   ProjectilePrefab: {fileID: -3203876736149594908, guid: 43f345bb693b5724d80e4c65fa1d9526,
     type: 3}
-  Icon: {fileID: 21300000, guid: b8572d9048ac2aa47a1458d1273a8bb2, type: 3}
+  Icon: {fileID: 21300000, guid: 8bcdf1e8ea0fef84f81cbc944a631ece, type: 3}
   Soundeffect: {fileID: 8300000, guid: e884c3b9a82a6754b86ec7c25c7dc474, type: 3}
