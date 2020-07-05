@@ -169,10 +169,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e8b1005c65592d40af1e7bfc4807768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Skills:
-  - {fileID: 11400000, guid: f6341142201dd704f8087d55c98d93e2, type: 2}
   _projectileSpawn: {fileID: 2548163055414250891}
   _projectilePool: {fileID: 0}
+  _currentSkill: {fileID: 11400000, guid: d1064d92df79e0d47919725b12911468, type: 2}
   _maxExperiencePerLevel: 0
 --- !u!195 &7955106367448220296
 NavMeshAgent:

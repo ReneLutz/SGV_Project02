@@ -13,15 +13,9 @@ public class SkillBarUI : MonoBehaviour
 
     public SkillBarUI Init(List<Skill> skills)
     {
-        SkillSlotUI slot;
-
-        foreach(Skill skill in skills)
+        foreach (Skill skill in skills)
         {
-            slot = Instantiate(_slotPrefab, transform);
-
-            _slots.Add(slot);
-
-            slot.Init(skill.Icon, this, _slots.IndexOf(slot));
+            AddSkill(skill);
         }
 
         return this;
@@ -34,49 +28,47 @@ public class SkillBarUI : MonoBehaviour
 
     private void Start()
     {
-        Init(_player.Skills);
-
-        // Init player with skill 0
-        _slots[_activeSkillIndex].SetActive(true);
-        _player.SetSkill(_activeSkillIndex, Constants.SKILL_DEFAULT_LEVEL);
-
         _player._onLevelUp += OnLevelUp;
     }
 
     private void Update()
     {
-        int newActiveSkillIndex = _activeSkillIndex;
-        
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            newActiveSkillIndex = 0;
+            ActivateSkill(0);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            newActiveSkillIndex = 1;
+            ActivateSkill(1);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            newActiveSkillIndex = 2;
+            ActivateSkill(2);
         }
 
-        ActivateSkill(newActiveSkillIndex);
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            ActivateSkill(3);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            ActivateSkill(4);
+        }
     }
 
     public void ActivateSkill(int index)
     {
         if (index >= _slots.Count) return;
 
-        if (_activeSkillIndex == index) return;
-
         _slots[_activeSkillIndex].SetActive(false);
         _slots[index].SetActive(true);
 
         _activeSkillIndex = index;
 
-        _player.SetSkill(_activeSkillIndex, _slots[_activeSkillIndex].Level);
+        _player.SetSkill(_slots[_activeSkillIndex].Skill, _slots[_activeSkillIndex].Level);
     }
 
     public void LevelUpSkill(int index, int level)
@@ -85,13 +77,31 @@ public class SkillBarUI : MonoBehaviour
 
         if (_levelUpCount <= 0) SetSlotPlusesActive(false);
 
-        if (_activeSkillIndex == index) _player.SetSkill(_activeSkillIndex, level);
+        if (_activeSkillIndex == index) _player.SetSkill(_slots[_activeSkillIndex].Skill, level);
     }
 
     public void OnLevelUp()
     {
         _levelUpCount++;
         SetSlotPlusesActive(true);
+    }
+
+    public void AddSkill(Skill skill)
+    {
+        SkillSlotUI slot;
+
+        slot = Instantiate(_slotPrefab, transform);
+
+        _slots.Add(slot);
+
+        slot.Init(skill, this, _slots.IndexOf(slot));
+
+        if (_levelUpCount > 0)
+        {
+            slot.SetPlusActive(true);
+        }
+
+        if (_slots.Count == 1) ActivateSkill(0);
     }
 
     private void SetSlotPlusesActive(bool active)

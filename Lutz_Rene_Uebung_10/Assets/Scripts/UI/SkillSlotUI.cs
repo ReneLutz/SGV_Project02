@@ -6,6 +6,8 @@ public class SkillSlotUI : MonoBehaviour
     [SerializeField] private GameObject _levelUp;
 
     public int Level;
+   
+    public Skill Skill;
 
     private bool _active;
     private bool _changeColor;
@@ -14,13 +16,14 @@ public class SkillSlotUI : MonoBehaviour
     private SkillBarUI _bar;
     private Image _image;
 
-    public SkillSlotUI Init(Sprite sprite, SkillBarUI bar, int index)
+    public SkillSlotUI Init(Skill skill, SkillBarUI bar, int index)
     {
         _changeColor = true;
         _active = false;
         _index = index;
+        Skill = skill;
 
-        _image.sprite = sprite;
+        _image.sprite = skill.Icon;
         _bar = bar;
 
         Level = Constants.SKILL_DEFAULT_LEVEL;

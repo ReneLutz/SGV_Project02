@@ -4,10 +4,9 @@ using UnityEngine.AI;
 
 public class Controller : MonoBehaviour
 {
-    public List<Skill> Skills;
-
     [SerializeField] private Transform _projectileSpawn;
     [SerializeField] private ProjectilePool _projectilePool;
+    [SerializeField] private Skill _currentSkill;
 
     [SerializeField] private int _maxExperiencePerLevel;
 
@@ -19,7 +18,6 @@ public class Controller : MonoBehaviour
     private int _currentExperience;
     private int _currentSkillLevel;
 
-    private Skill _currentSkill;
     private AudioSource _audio;
 
     private NavMeshAgent _agent;
@@ -31,6 +29,7 @@ public class Controller : MonoBehaviour
     {
         _projectilePool = pool;
         _projectilePool._objectPrefab = _currentSkill.ProjectilePrefab;
+
         return this;
     }
 
@@ -43,7 +42,7 @@ public class Controller : MonoBehaviour
 
         _currentExperience = 0;
 
-        SetSkill(0, Constants.SKILL_DEFAULT_LEVEL);
+        if (_currentSkill) SetSkill(_currentSkill, Constants.SKILL_DEFAULT_LEVEL);
     }
 
     private void Update()
@@ -109,11 +108,10 @@ public class Controller : MonoBehaviour
         _animator.SetBool(Constants.ANIMATION_PARAM_ATTACK, false);
     }
 
-    public void SetSkill(int index, int level)
+    public void SetSkill(Skill skill, int level)
     {
-        if (index >= Skills.Count) return;
         _currentSkillLevel = level;
-        _currentSkill = Skills[index];
+        _currentSkill = skill;
         _range = _currentSkill.Range;
         _audio.clip = _currentSkill.Soundeffect;
     }

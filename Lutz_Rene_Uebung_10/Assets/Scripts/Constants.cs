@@ -1,4 +1,7 @@
-﻿public static class Constants
+﻿using UnityEditorInternal;
+using UnityEngine;
+
+public static class Constants
 {
     public static readonly int SKILL_DEFAULT_LEVEL = 1;
 
@@ -13,4 +16,7 @@
 
     public static readonly string ENDSCREEN_WAVETEXT = "Wave reached: {0} of {1}";
     public static readonly string ENDSCREEN_ENEMYTEXT = "Enemies alive: {0} of {1}";
+
+    // Orange line color if activated line
+    public static readonly Color TREE_LINE_COLOR = new Color(255, 160, 0, 255);
 }
